@@ -1,0 +1,15 @@
+<%- include('header'); -%>
+<%- include('container'); -%>
+
+<body>
+    <% for(var i=0; i < courseview.length; i++) { %>
+        
+        <h1><%= courseview[i].coursename %></h1>      
+        <h3><%= courseview[i].courseperiod %></h3> 
+        <h3><%= courseview[i].coursesession %></h3> 
+
+
+        <% } %>
+    
+
+</body>

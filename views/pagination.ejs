@@ -1,0 +1,110 @@
+<%- include('header'); -%>
+<%- include('container'); -%>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!--Google Fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+ 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css"> 
+
+  
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+<body>
+    <!-- <div class="row dsp">
+    <h2>Search</h2>
+    <input type="text" name="search-google" id="search-google" placeholder="search..." class="form-control litanswer">
+    </div> -->
+    <form action="/home/searchp" method="post">
+        <input type="search" name="search" placeholder="Search...">
+        <input type="submit" value="Search">
+    </form> 
+
+    <table id="Table">
+    <th>coursename <button onclick="sortTable()">Sort</button></th>
+    <th>courseperiod</th>
+    <th>coursession</th>
+    <th>View</th>
+    
+    <% if(data.length > 0){ %>
+
+    <% for(var i=0; i < data.length; i++) { %>
+        
+        <tr>               
+        <td><%= data[i].coursename %></td>  
+        <td><%= data[i].courseperiod %></td>
+        <td><%= data[i].coursesession %></td>             
+        <td> 
+              <!-- <a href="view/<%= data[i].id %>" type="button" class="fa fa-eye"> -->
+               <a href="/home/view/<%= data[i].id %>" type="button" class="fa fa-eye">
+              </a> 
+          </td>     
+        </tr>
+        <% } %>
+        <% }else{ %>
+            <h5>Data Not Found</h5>
+        <% } %>
+    </table>
+
+    <center>
+        <div ></div>
+        <ul class="pagination">
+           
+            <% for (var a = 1; a <= endingLink; a++) { %>
+            <li>
+                <a href="?page=<%= a; %>">
+                    <%= a; %>
+                </a>
+            </li>
+            <% } %>
+        </ul>   
+    </center>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        $("#search-google").autocomplete({
+            
+        name: 'search-google',
+        source: 'http://localhost:8080/home/searchpag?key=%QUERY',
+        limit: 10
+        });
+        });
+
+        function sortTable() {
+      var table, rows, switching, i, x, y, z, v, shouldSwitch;
+      table = document.getElementById("Table");
+      switching = true;
+      while (switching) {
+      
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[0];
+          y = rows[i + 1].getElementsByTagName("TD")[0];
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+         
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+    </script>
+</body>

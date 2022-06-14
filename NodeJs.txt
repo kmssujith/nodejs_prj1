@@ -1,0 +1,298 @@
+    Nodejs is a free programming language that is easy to learn. With nodejs you can create apps, APIs, web applications, connect to databases, Discord bots and much more. By learning nodejs you will have the knowledge to continue with other languages that are similar such as Java, C#, C, C++. The programming concepts in these programming languages are similar to those in nodejs with some differences.
+
+
+NodeJS:(API)(Buildin module)
+   https://nodejs.org/dist/latest-v18.x/docs/api/
+
+
+Nodejs:
+   Node has V8 Engine like what Chrome has.
+   Javascript dosen't need html to intract with V8 Engine on Nodejs.
+   Node is not a Programmimg language 
+   Node is not a Frame work
+   Node means running on server, we can run node on    server, can use node on server side. 
+   Node.js is a javascript runtime.
+   It consist of many api it is a build in modules, can also intract with OS through node it has a module, by writing script then push to v8 then we run it.
+
+Buildin Modules:    
+
+
+About NodeJS:
+   
+   Synchronous:
+       It handles a single request in a time, and move to another request.        
+		
+   Asynchronous: 
+        It Handles a multiple request in a time.
+
+   Single theread:
+        Node js uses a single thread concept to handele multiple client request "using Event Loop"(Like a barer in a hotel).
+	
+	No Buffering:
+	   There is no buffering in NodeJs
+   
+
+   NodeJs Modeules:
+       Nodejs modules be same as the js Libraries.
+       Can also create a modules in nodejs	   
+       If you want to include the module in nodejs use  the require() with the name of the module.
+	
+   NodeJS Built-in Modules:
+       Http- To make Node.js act as a HTTP server.
+       Https- To make Node.js act as an HTTPS server.
+       fs- To handle the file system.
+       events- To handle events.
+       path- To handle file paths.
+       url-To parse URL strings.
+   
+   File System Modeule:
+    var fs = require('fs');
+	
+   Read File:
+	fs.readFile('demo.txt',function(err,data)); 
+       
+     var fs = require("fs");
+     var http = require("http");
+     
+     http.createServer(function(req, res)
+     {
+     fs.readFile('data.txt',function(err,data)
+     {
+         if(err)
+         {
+             return console.log.error(err);
+         }
+         console.log("async:" +data.toString());
+         res.write(data);
+         res.end();
+     });
+     }).listen(5000)
+     
+
+    Write File:
+       fs.writeFile('data.txt',"hiii",function(err,data)
+    
+    eg:
+     var fs = require("fs");
+     var http = require("http");
+     
+     http.createServer(function(req, res)
+     {
+     fs.writeFile('data.txt',"hiii",function(err,data)
+     {
+         if(err)
+         {
+             return console.log.error(err);
+         }
+         console.log("async:" +data.toString());
+         res.write(data);
+         res.end();
+     });
+     }).listen(5000);
+	 
+	 
+	APPEND File:
+     
+     fs.appendFile('demo.txt', 'Hello',function(err))
+	 
+    Rename file:
+	  
+      path 1 - demo.txt - is old file name.
+      path 2 - demonew.txt - is new file name.      
+      Callback - In  this callback function which gets one argument(err).
+	  fs.rename('demo.txt','demonew.txt',function(err))
+	  
+	Delete file:
+      fs.unlink() -  used to delete.       
+
+     fs.unlink('demo.txt', function(err))	 
+
+     Open File:
+	  err - It returns error in case of any error occurs.
+	  fd - This is the file description returned by fs.open().
+	  
+      fs.open("demo.txt",w+,function(err,fd))	 
+	   
+	File System Module (Flags for handling file system):
+      Read File:
+        r - read file.  
+	    r+ - read write.
+		rs - read synchronous.
+		rs+ - read and write in synchronous.
+	  
+      Write File:
+        w- write (If file not exist it creates ,if exist data in file is truncated)
+		wx- write(if file exist fail)
+        w+ - write and read
+        wx+	- write and read file(if file exist fail) 
+   
+    Append File:
+     a - append
+     ax - append if file exist fail
+     a+	- read and append(if file exist create file)
+	 ax+ -  read and write file (if file exist fail )
+	
+    Methods for getting file information:
+       stats.isFile()- TReturn true if file type is simple file.
+       state.isDirectory()-Return true if file type is directory.
+       
+        syntax:
+         stats - Its an object of fs.Stats type.
+         fs.stat('demo.txt', function(err,stats))	 
+             
+			 
+			 
+   Install Express for json in Nodejs:
+        npm install -g express(globaly install express)
+		npm install express --save
+		npm install body-parser --save
+		npm install cookie-parser --save
+		npm install multer --save
+		
+		
+	NodeJS Debugger:
+     
+     Use "debugger" key inside program in the starting.
+      use the below command in terminal to start debugging in chrome after starting.
+        1) node--inspect-brk app.js 
+         2) use the link to start dubugging in chrome "chrome://inspect/".	
+		 
+	Error Message:
+      node app.js --title="Error Message" --body="run it"
+try this to create an error message if any occured.	  
+
+
+Nodemon:
+  npm install -g nodemon
+  Check nodemon verson(nodemon -v), if ypu get error(cannot be loaded because running scripts is disabled on this system. 
+    For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.)  
+  
+  Open PowerShell in administrator mode and type the commend below.
+    "Get-ExecutionPolicy  Unrestricted"
+  Then Pres yes.	
+  
+  Refer the below link for hbs Error:
+  (Error: Failed to lookup view "index" in views directory "D:\JS_WRK\Node_Js\Samp\web-server\src\views")
+  Ref: https://github.com/pillarjs/hbs/issues/183
+  
+  HBS error:(after adding Header and footer andd tghen save all hbs file using below command, if not u will get error)
+  
+  PS D:\JS_WRK\Node_Js\Samp\web-server> nodemon src/app.js -e js,hbs
+  
+  
+  JWT Session & Cookies Ref:
+    1. https://codeshack.io/basic-login-system-nodejs-express-mysql/
+	2. https://expressjs.com/en/resources/middleware/cookie-session.html
+	3. https://www.freecodecamp.org/news/authenticate-users-node-app/
+	4. https://www.bezkoder.com/node-js-express-login-example/
+	5. https://dev.to/edemagbenyo/nodejs-authentication-with-cookies-and-session-part-2-2752
+	6. https://dev.to/edemagbenyo/nodejs-authentication-with-http-basic-access-part-1-ii2
+	7. https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/
+
+  	
+	CRUD:
+	   https://www.thecodehubs.com/crud-operations-in-node-js-api-using-sql-server/
+	   https://learncoders.xyz/building-a-simple-crud-app-with-node-express-and-mongodb/
+	   
+	   Error:
+	     Error [ERR_HTTP_HEADERS_SENT]: D:\JS_WRK\Node_Js\Node_Task\sample\templates\Home.hbs: Cannot set headers after they are sent to the client
+	   Ref:
+		 https://poopcode.com/error-err_http_headers_sent-cannot-set-headers-after-they-are-sent-to-the-client-how-to-fix/
+		 
+
+Auto increment in db table use identity:
+   create table StudentInfo(
+id int identity(1,1),
+Name varchar(50),
+Age int)		 
+
+
+    Login:
+	  https://www.w3jar.com/node-js-login-and-registration-system-with-express-js-and-mysql/
+	  Login tried:
+	    https://codingstatus.com/create-registration-and-login-form-in-node-js-mysql/
+		
+		login :
+		  https://coderszine.com/user-login-and-registration-with-node-js-express-mysql/
+		  routing:
+		  https://www.mydatahack.com/website-page-routing-with-node-js-express-and-ejs/
+		  
+		  search:
+		    https://www.youtube.com/watch?v=gGb_-h5Hnvo
+		  
+		  AJAX search:
+		    https://codeforgeek.com/ajax-search-box-using-node-mysql/
+			https://www.tutsmake.com/node-js-mysql-autocomplete-search-example/
+		  
+		  
+		  pagination:
+		    https://www.youtube.com/watch?v=bRRhjs2Dqc4
+			https://www.sqlshack.com/pagination-in-sql-server/
+			
+			
+			QuERY
+			__________________________________________________________
+			
+			SELECT id, first_name, last_name, username FROM users WHERE username ='ab' and password = 'abc'
+
+select * from users
+select * from course
+
+create table course(
+id int identity(1,1),
+coursename varchar(50),
+courseperiod int,
+coursesession varchar(50)
+)
+
+ALTER TABLE table_name
+ALTER COLUMN column_name datatype;
+
+ALTER TABLE course
+ALTER COLUMN courseperiod varchar(50);
+
+insert into course values('A','5 month', 'Morning'),('B++','3 month', 'Noon'),('C@','4 month', 'Noon'),('AWS','3 month', 'Morning'), ('Python Data Science','4 month', 'Morning')
+
+SELECT * from course where coursename like'%py%'
+SELECT * from course where coursename like '%py%'
+
+SELECT * FROM course  LIMIT 1,3
+
+SELECT * FROM course LIMIT 0,3
+select @@VERSION
+
+SELECT * FROM course WHERE id BETWEEN 0 AND 5;
+
+
+GO
+WITH course AS
+(
+    SELECT coursename
+    ROW_NUMBER() OVER (ORDER BY OrderDate) AS 'RowNumber'
+    FROM Sales.SalesOrderHeader 
+) 
+SELECT * 
+FROM OrderedOrders 
+WHERE RowNumber BETWEEN 10 AND 20;
+
+SELECT TOP 10 * FROM (SELECT TOP 20 from course ORDER BY Id) order BY Id DESC
+
+select * from course order by id asc offset 0 rows fetch next 5 rows only;
+select * from course order by id asc offset 0 rows fetch next 5 rows only;
+
+SELECT *
+ FROM course
+ WHERE 
+ ORDER BY -- this is a MUST there must be ORDER BY statement
+-- the paging comes here
+OFFSET     10 ROWS       -- skip 10 rows
+FETCH NEXT 10 ROWS ONLY; -- take 10 rows
+
+SELECT * FROM course ORDER BY id OFFSET 0 ROWS Fetch next 5 rows only 
+
+insert into course values('H','5 month', 'Morning'),('p++','3 month', 'Noon'),('I','4 month', 'Noon'),('GC','3 month', 'Morning'), ('Data Science','4 month', 'Morning')
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Asc and desc:
+ https://www.ag-grid.com/javascript-data-grid/row-sorting/
+ https://www.javatpoint.com/how-to-sort-table-data-in-html-using-javascript
